@@ -45,7 +45,11 @@ Make use of the many generators for code, try `ember help generate` for more det
 
 ### Deploying
 
-Specify what it takes to deploy your app.
+Just push a new commit to main branch and it will trigger a new deploy on Heroku.
+
+### Demo
+
+You can try it out [here](https://number-guessing-luks.herokuapp.com/).
 
 ## Further Reading / Useful Links
 
