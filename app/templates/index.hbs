@@ -1,2 +1,12 @@
-<LinkTo @route="game">Game</LinkTo>
-<LinkTo @route="statistics">Stats</LinkTo>
+<h3>To Start Playing Please Enter With Your Username</h3>
+
+<Input
+   @type="text"
+   @placegolder="Username"
+   @value={{this.username}}
+ />
+
+<div class="button-group">
+  <button type="button" class="button" {{on 'click' (fn this.goTo 'game')}}>Start Game</button>
+  <button type="button" class="button" {{on 'click' (fn this.goTo 'statistics')}}>See Statistics</button>
+</div>

@@ -1,9 +1,33 @@
 {{page-title "Game"}}
 
-<h1>I am thinking of a number between 0 and 10</h1>
-<p>Make a Guess</p>
-<input type="text" />
-<button>Guess</button>
+{{#if this.result}}
+  <p>{{this.result}} Guess!</p>
+  <p>Your Guess: {{this.userGuess}}</p>
+  <p>Secret Number: {{this.secretNumber}}</p>
+  <p>{{this.resultPhrase}}</p>
 
-<LinkTo @route="statistics">End Game</LinkTo>
-<LinkTo @route="index">Back To Home</LinkTo>
+  <div>
+    <button type="button" class="button" {{on 'click' this.newGame}}>Play Again</button>
+    <LinkTo @route="statistics" class="button">End Game</LinkTo>
+  </div>
+
+{{else}}
+  <h1>I am thinking of a number between 0 and 10.</h1>
+  <h3>Can you guess whitch number it is?</h3>
+
+  <div>
+    <Input
+      @type="number"
+      @placegolder="Make Your Guess"
+      @value={{this.userGuess}}
+      @enter={{this.guess}}
+      autofocus
+    />
+
+    <button type="button" class="button" {{on 'click' this.guess}}>Guess</button>
+  </div>
+{{/if}}
+
+<div class="button-group">
+  <LinkTo @route="index" class="button">Back To Home</LinkTo>
+</div>

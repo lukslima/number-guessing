@@ -2,5 +2,56 @@
 
 <h1>Statistics</h1>
 
-<LinkTo @route="game">Play More</LinkTo>
-<LinkTo @route="index">Back To Home</LinkTo>
+<div>
+  <h3>Current User: {{this.model.currentUser.name}}</h3>
+
+  <div>
+    <strong>Total games played:</strong> {{this.model.currentUser.totalGames}}
+  </div>
+
+  <div>
+    <strong>Percentage of wins:</strong> {{this.model.currentUser.percentageWins}}
+  </div>
+
+  <div>
+    <strong>Percentage of loses:</strong> {{this.model.currentUser.percentageLoses}}
+  </div>
+</div>
+
+<div>
+  <h3>Overall:</h3>
+
+  <div>
+    <strong>Total games played:</strong> {{this.model.totalGames}}
+  </div>
+
+  <div>
+    <strong>Percentage of wins:</strong> {{this.model.percentageWins}}
+  </div>
+
+  <div>
+    <strong>Percentage of loses:</strong> {{this.model.percentageLoses}}
+  </div>
+
+  <div>
+    <strong>Most Often Secret Number:</strong> {{this.model.mostOftenSecretNumber}}
+  </div>
+
+  <div>
+    <strong>Most Often User Guess:</strong> {{this.model.mostOftenUserGuess}}
+  </div>
+
+  <div>
+    <strong>Top Players:</strong>
+    <ul>
+      {{#each this.model.sortedTopPlayers as |player idx|}}
+        <li>#{{idx}} - {{player.name}} - {{player.percentageWins}}% of Wins</li>
+      {{/each}}
+    </ul>
+  </div>
+</div>
+
+<div class="button-group">
+  <LinkTo @route="game" class="button">Play More</LinkTo>
+  <LinkTo @route="index" class="button">Back To Home</LinkTo>
+</div>

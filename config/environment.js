@@ -3,6 +3,10 @@
 module.exports = function (environment) {
   let ENV = {
     modulePrefix: 'number-gessing',
+    'ember-local-storage': {
+      namespace: true, // will use the modulePrefix e.g. 'my-app'
+      keyDelimiter: '/', // will use / as a delimiter - the default is :
+    },
     environment,
     rootURL: '/',
     locationType: 'auto',
