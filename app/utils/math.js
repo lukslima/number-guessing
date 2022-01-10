@@ -3,7 +3,7 @@ export const randomUpTo = (max) => {
 };
 
 export const percentageCalc = (sampleCount, totalCount) => {
- return sampleCount / totalCount * 100;
+  return (sampleCount / totalCount) * 100;
 };
 
 export const roundedPercentage = (sampleCount, totalCount) => {

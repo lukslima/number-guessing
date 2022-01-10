@@ -1,17 +1,15 @@
-import { set } from '@ember/object';
-import Service from '@ember/service';
-import { inject as service } from '@ember/service';
+import Service, { inject as service } from '@ember/service';
 import { tracked } from '@glimmer/tracking';
-import { computed } from '@ember/object';
+import { computed, set } from '@ember/object';
 import { alias } from '@ember/object/computed';
 import { roundedPercentage } from '../utils/math';
 
 export default class StatisticsService extends Service {
   @tracked totalGames = 0;
   @tracked totalWins = 0;
-  topPlayers = [];
   secretNumberOccurrences = {};
   userGuessOccurrences = {};
+  topPlayers = [];
 
   @service session;
   @service store;
@@ -73,32 +71,6 @@ export default class StatisticsService extends Service {
   @computed('totalGames', 'userGuessOccurrences')
   get mostOftenUserGuess() {
     return this._mostOftenFor(this.userGuessOccurrences);
-  }
-
-  _mostOftenFor(occurrencesHash) {
-    const occurrences = Object.entries(occurrencesHash);
-
-    if (occurrences.length == 0) {
-      return '-';
-    }
-
-    let mostOftenOccurrence = null;
-
-    occurrences.forEach((occurrence) => {
-      if (mostOftenOccurrence == null) {
-        mostOftenOccurrence = occurrence;
-        return;
-      }
-
-      const mostOftenOccurrenceCount = mostOftenOccurrence[1];
-      const occurrenceCount = occurrence[1];
-
-      if (occurrenceCount > mostOftenOccurrenceCount) {
-        mostOftenOccurrence = occurrence;
-      }
-    });
-
-    return mostOftenOccurrence[0];
   }
 
   async setup() {
@@ -190,5 +162,31 @@ export default class StatisticsService extends Service {
     };
 
     window.localStorage.setItem('gameStatistics', JSON.stringify(statistics));
+  }
+
+  _mostOftenFor(occurrencesHash) {
+    const occurrences = Object.entries(occurrencesHash);
+
+    if (occurrences.length == 0) {
+      return '-';
+    }
+
+    let mostOftenOccurrence = null;
+
+    occurrences.forEach((occurrence) => {
+      if (mostOftenOccurrence == null) {
+        mostOftenOccurrence = occurrence;
+        return;
+      }
+
+      const mostOftenOccurrenceCount = mostOftenOccurrence[1];
+      const occurrenceCount = occurrence[1];
+
+      if (occurrenceCount > mostOftenOccurrenceCount) {
+        mostOftenOccurrence = occurrence;
+      }
+    });
+
+    return mostOftenOccurrence[0];
   }
 }

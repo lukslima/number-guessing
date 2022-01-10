@@ -1,22 +1,45 @@
 {{page-title "Game"}}
 
 {{#if this.result}}
-  <p>{{this.result}} Guess!</p>
-  <p>Your Guess: {{this.userGuess}}</p>
-  <p>Secret Number: {{this.secretNumber}}</p>
-  <p>{{this.resultPhrase}}</p>
+  <div data-test-result-div>
+    <p data-test-result-text>
+      {{this.result}} Guess!
+    </p>
+    <p data-test-user-guess-text>
+      Your Guess: {{this.userGuess}}
+    </p>
+    <p data-test-secret-number-text>
+      Secret Number: {{this.secretNumber}}
+    </p>
+    <p data-test-result-phrase-text>
+      {{this.resultPhrase}}
+    </p>
 
-  <div>
-    <button type="button" class="button" {{on 'click' this.newGame}}>Play Again</button>
-    <LinkTo @route="statistics" class="button">End Game</LinkTo>
+    <div class="button-group">
+      <button
+        data-test-play-again-button
+        type="button"
+        class="button"
+        {{on 'click' this.newGame}}
+      >
+        Play Again
+      </button>
+      <LinkTo
+        data-test-end-game-button
+        @route="statistics"
+        class="button"
+      >
+        End Game
+      </LinkTo>
+    </div>
   </div>
-
 {{else}}
   <h1>I am thinking of a number between 0 and 10.</h1>
   <h3>Can you guess whitch number it is?</h3>
 
   <div>
     <Input
+      data-test-user-guess-field
       @type="number"
       @placegolder="Make Your Guess"
       @value={{this.userGuess}}
@@ -24,10 +47,23 @@
       autofocus
     />
 
-    <button type="button" class="button" {{on 'click' this.guess}}>Guess</button>
+    <button
+      data-test-guess-button
+      type="button"
+      class="button"
+      {{on 'click' this.guess}}
+    >
+      Guess
+    </button>
   </div>
 {{/if}}
 
 <div class="button-group">
-  <LinkTo @route="index" class="button">Back To Home</LinkTo>
+  <LinkTo
+    data-test-back-to-home-button
+    @route="index"
+    class="button"
+  >
+    Back To Home
+  </LinkTo>
 </div>
